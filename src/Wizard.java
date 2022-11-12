@@ -25,20 +25,23 @@ public class Wizard extends Hero {
                 System.out.println(this.name + " наносит сокрушительный удар!\nУрон " + ((this.strength + manaDamage) * 2));
                 monster.painSound();
                 monster.checkHealth();
+                checkMana(this);
 
             } else {
                 monster.health -= this.strength + manaDamage;
                 this.mana -= this.mana / 10;
                 System.out.println(this.name + " наносит удар.\nУрон " + (this.strength + manaDamage));
                 monster.checkHealth();
+                checkMana(this);
             }
 
         } else {
             System.out.println("Промах!");
         }
     }
-    public void checkMana(Wizard wizard){
-        if(wizard.mana <= 0){
+
+    public void checkMana(Wizard wizard) {
+        if (wizard.mana <= 0) {
             System.out.println("Мана закончилась... Теперь только рукопашка...");
         }
     }

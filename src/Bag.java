@@ -2,11 +2,11 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Bag{
+public class Bag {
     protected List<Caryable> items;
 
     public Bag() {
-        items = new ArrayList<>(20);
+        items = Collections.synchronizedList(new ArrayList<>(20));
     }
 
     public void addSomething(Caryable caryable) {

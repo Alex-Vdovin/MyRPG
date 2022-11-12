@@ -1,6 +1,3 @@
-import java.util.Comparator;
-import java.util.Scanner;
-
 public class Trader {
     private Bag assortment;
 
@@ -20,11 +17,13 @@ public class Trader {
             switch (choice) {
                 case 1 -> {
                     this.bargain(hero, new Tango());
-                    anythingElse(hero);}
+                    anythingElse(hero);
+                }
                 case 2 -> {
                     this.bargain(hero, new Clarity());
-                    anythingElse(hero);}
-                case 0 ->{
+                    anythingElse(hero);
+                }
+                case 0 -> {
                     System.out.println("До скорого!");
                     hero.world.home(hero);
                 }
@@ -45,7 +44,7 @@ public class Trader {
             } else {
                 System.out.println("А деньжат то маловато...");
             }
-        }else{
+        } else {
             System.out.println("Увы, пока что мне больше нечего тебе предложить...");
         }
 
@@ -60,10 +59,10 @@ public class Trader {
             choice = Integer.parseInt(Main.sc.nextLine());
             switch (choice) {
                 case 1 -> {
-                    if(hero.money < 25){
+                    if (hero.money < 25) {
                         System.out.println("Да что ты пристал!!!\nУ тебя нет ни гроша!\nИди в подземелье и заработай потом и кровью хотя бы горсть монет!\nВали из моего магазина!");
                         hero.world.home(hero);
-                    }else {
+                    } else {
                         System.out.println("Тогда продолжаем!");
                         this.sell(hero);
                     }
@@ -78,10 +77,11 @@ public class Trader {
             anythingElse(hero);
         }
     }
-    public void printAssortment(){
-        if(assortment.items.isEmpty()){
+
+    public void printAssortment() {
+        if (assortment.items.isEmpty()) {
             System.out.println("У меня нет товаров на продажу");
-        }else{
+        } else {
             assortment.printItems();
             System.out.println("Что выбираем?");
             System.out.println("1. Танго");
@@ -89,18 +89,19 @@ public class Trader {
         }
 
     }
-    public boolean checkItem(Buff buff){
+
+    public boolean checkItem(Buff buff) {
         for (Caryable item :
                 this.assortment.items) {
-            if(item.getName().equals(buff.getName())){
+            if (item.getName().equals(buff.getName())) {
                 this.assortment.items.remove(item);
-                this.assortment.items.sort(Comparator.comparingInt(Caryable::getPrice));
                 return true;
             }
         }
         return false;
     }
-    public void newAssortment(){
+
+    public void newAssortment() {
         assortment.items.clear();
         assortment.addSomething(new Tango());
         assortment.addSomething(new Tango());

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Fight <T extends Hero> implements Runnable {
+public class Fight<T extends Hero> implements Runnable {
     private T hero;
     private Monster monster;
 
@@ -45,7 +45,7 @@ public class Fight <T extends Hero> implements Runnable {
                         System.out.println("Ловкость была " + (hero.agility - 5) + "\nА теперь " + hero.agility);
                         found = false;
                     }
-                    case "4" ->{
+                    case "4" -> {
                         hero.mana += 10;
                         System.out.println("Маны было " + (hero.mana - 10) + "\nА теперь " + hero.mana);
                         found = false;
@@ -59,6 +59,7 @@ public class Fight <T extends Hero> implements Runnable {
             levelUp(hero);
         }
     }
+
     public void way(T hero) {
         System.out.println("1. Да");
         System.out.println("2. Нет");

@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public abstract class Hero extends Unit {
 
     protected int mana;
@@ -48,7 +44,7 @@ public abstract class Hero extends Unit {
         this.nextLevel = nextLevel;
     }
 
-    public <T extends Hero> void fight(T hero, Monster monster){
+    public <T extends Hero> void fight(T hero, Monster monster) {
         System.out.println("Герой " + hero.name + " будет сражаться с монстром " + monster.name);
         int step = 1;
         while (monster.health > 0 && hero.health > 0) {
@@ -67,16 +63,17 @@ public abstract class Hero extends Unit {
 
     public abstract void hit(Monster monster);
 
-    public void buy(Trader trader){
+    public void buy(Trader trader) {
         trader.sell(this);
     }
 
     @Override
     public String toString() {
-        return this.name + ":\n" +"Уровень: " + this.level +"\nТекущий опыт: " + this.experience + "\nСила: " + this.strength + "\nЛовкость:  " + this.agility + "\nЗдоровье: " + this.health + "\nМана: " + this.mana
+        return this.name + ":\n" + "Уровень: " + this.level + "\nТекущий опыт: " + this.experience + "\nСила: " + this.strength + "\nЛовкость:  " + this.agility + "\nЗдоровье: " + this.health + "\nМана: " + this.mana
                 + "\nДеньги: " + this.money + "\nОпыта до следующего уровня: " + (this.nextLevel - this.experience) + "\nЗаходы в тёмный лес: " + this.dungeons;
     }
-    public void checkWin(Monster monster){
+
+    public void checkWin(Monster monster) {
         if (this.health <= 0) {
             this.alive = false;
             this.health = 0;
@@ -96,6 +93,7 @@ public abstract class Hero extends Unit {
             System.out.println(this.name + " заработал " + money + " золота\n" + this.name + " заработал " + experience + " очков опыта\nВсего золота: " + this.money + "\nВсего опыта: " + this.experience);
         }
     }
+
     public void checkBag() {
         if (bag.items.isEmpty()) {
             System.out.println("Однако пусто и грустно тут...");
@@ -127,7 +125,8 @@ public abstract class Hero extends Unit {
             world.home(this);
         }
     }
-    public void getStats(){
+
+    public void getStats() {
         System.out.println(this);
         System.out.println("\nВведите что угодно для возвращения в главное меню");
         Main.sc.nextLine();

@@ -11,6 +11,7 @@ public class Knight extends Hero {
         this.bag = new Bag();
         this.currentMaxHealth = this.health;
     }
+
     @Override
     public void hit(Monster monster) {
         if (this.agility * 10 > Math.random() * 100) {

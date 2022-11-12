@@ -1,6 +1,4 @@
-import java.util.Scanner;
-
-public class World <T extends Hero>{
+public class World<T extends Hero> {
     private String name;
     private T hero;
     private Trader trader;
@@ -27,6 +25,7 @@ public class World <T extends Hero>{
     }
 
     public void home(T hero) {
+        hero.setMoney(100);
         printWays();
         boolean rightChoice = true;
         while (rightChoice) {
@@ -53,7 +52,6 @@ public class World <T extends Hero>{
             }
         }
     }
-
 
 
     public static void printWays() {

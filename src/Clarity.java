@@ -19,6 +19,7 @@ public class Clarity extends Buff {
         buff.use(hero);
         System.out.println("У тебя теперь " + hero.mana);
     }
+
     @Override
     public String toString() {
         return "Кларити";

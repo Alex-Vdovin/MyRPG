@@ -4,5 +4,6 @@ public interface Caryable {
     String getName();
 
     void getDescription(Hero hero, Caryable buff);
+
     int getPrice();
 }
