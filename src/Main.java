@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
-    public static volatile Scanner sc;
+    private static final Scanner sc = new Scanner(System.in);
+    ;
 
     public static void main(String[] args) {
         System.out.println("Добро пожаловать в игру!");
-        sc = new Scanner(System.in);
         nameWorld();
     }
 

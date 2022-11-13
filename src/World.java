@@ -1,11 +1,15 @@
+import java.util.Scanner;
+
 public class World<T extends Hero> {
     private String name;
     private T hero;
     private Trader trader;
+    private static Scanner sc = new Scanner(System.in);
 
-    public void exploreDungeon() {
+    public void exploreDungeon() throws InterruptedException {
         trader.newAssortment();
         new Thread(new Fight(hero, ((int) (Math.random() * 100) > 50 ? new Sceleton(hero.level) : new Goblin(hero.level)))).start();
+        Thread.currentThread().join();
     }
 
     public static void giveUp(Hero hero) {
@@ -25,12 +29,11 @@ public class World<T extends Hero> {
     }
 
     public void home(T hero) {
-        hero.setMoney(100);
         printWays();
         boolean rightChoice = true;
         while (rightChoice) {
             try {
-                int choice = Integer.parseInt(Main.sc.nextLine());
+                int choice = Integer.parseInt(sc.nextLine());
                 switch (choice) {
                     case 1 -> {
                         rightChoice = false;
@@ -47,7 +50,7 @@ public class World<T extends Hero> {
                     case 4 -> hero.checkBag();
                     case 5 -> hero.getStats();
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | InterruptedException e) {
                 System.out.println("¬ведите верное значение");
             }
         }

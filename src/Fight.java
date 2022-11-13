@@ -3,11 +3,13 @@ import java.util.Scanner;
 public class Fight<T extends Hero> implements Runnable {
     private T hero;
     private Monster monster;
+    private static Scanner sc;
 
 
     public Fight(T hero, Monster monster) {
         this.hero = hero;
         this.monster = monster;
+        sc = new Scanner(System.in);
     }
 
     public void run() {
@@ -16,18 +18,18 @@ public class Fight<T extends Hero> implements Runnable {
         levelUp(hero);
         System.out.println("Хотите продолжить исследование тёмного леса?");
         way(hero);
-
+        sc.close();
     }
 
-    public void levelUp(Hero hero) {
+    public static void levelUp(Hero hero) {
         if (hero.experience >= hero.nextLevel) {
             hero.experience -= hero.nextLevel;
             hero.level++;
-            hero.nextLevel = (int) (hero.nextLevel * 1.9);
+            hero.nextLevel = (int) (hero.nextLevel * 1.5);
             System.out.println("\nНовый уровень!\n" + hero.level + "!!!\n" + "Что будем качать?");
             System.out.println("\n1.Сила\n2.Здоровье\n3.Ловкость\n4.Мана");
             boolean found = true;
-            String str = Main.sc.nextLine();
+            String str = sc.nextLine();
             while (found) {
                 switch (str) {
                     case "1" -> {
@@ -63,9 +65,8 @@ public class Fight<T extends Hero> implements Runnable {
     public void way(T hero) {
         System.out.println("1. Да");
         System.out.println("2. Нет");
-        Main.sc = new Scanner(System.in);
         try {
-            int choice = Integer.parseInt(Main.sc.nextLine());
+            int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1 -> hero.world.exploreDungeon();
                 case 2 -> hero.world.home(hero);
@@ -73,6 +74,8 @@ public class Fight<T extends Hero> implements Runnable {
         } catch (NumberFormatException e) {
             System.out.println("Введите правильный вариант ответа.");
             way(hero);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

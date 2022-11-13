@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public abstract class Hero extends Unit {
 
     protected int mana;
@@ -11,6 +13,7 @@ public abstract class Hero extends Unit {
     protected int currentMaxHealth;
 
     protected World world;
+    private static Scanner sc = new Scanner(System.in);
 
     public int getExperience() {
         return experience;
@@ -82,7 +85,7 @@ public abstract class Hero extends Unit {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         } else {
             System.out.println("\nГерой " + this.name + " победил в этой схватке!");
@@ -106,7 +109,7 @@ public abstract class Hero extends Unit {
             }
             System.out.println("Хотите что-то использовать? Выберите номер зелья.\nИли 0 для выхода в главное меню.");
             boolean choice = true;
-            String buff = Main.sc.nextLine();
+            String buff = sc.nextLine();
             while (choice) {
                 try {
                     if (Integer.parseInt(buff) != 0) {
@@ -119,7 +122,7 @@ public abstract class Hero extends Unit {
 
                 } catch (NumberFormatException e) {
                     System.out.println("Введите верное значение");
-                    buff = Main.sc.nextLine();
+                    checkBag();
                 }
             }
             world.home(this);
@@ -129,7 +132,7 @@ public abstract class Hero extends Unit {
     public void getStats() {
         System.out.println(this);
         System.out.println("\nВведите что угодно для возвращения в главное меню");
-        Main.sc.nextLine();
+        sc.nextLine();
         World.printWays();
     }
 

@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 public class Trader {
     private Bag assortment;
+    private static Scanner sc = new Scanner(System.in);
 
     public Trader() {
         assortment = new Bag();
@@ -13,14 +16,14 @@ public class Trader {
         System.out.println("Если ничего не хочешь покупать, нажми на 0");
         int choice;
         try {
-            choice = Integer.parseInt(Main.sc.nextLine());
+            choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1 -> {
-                    this.bargain(hero, new Tango());
+                    this.bargain(hero, new Clarity());
                     anythingElse(hero);
                 }
                 case 2 -> {
-                    this.bargain(hero, new Clarity());
+                    this.bargain(hero, new Tango());
                     anythingElse(hero);
                 }
                 case 0 -> {
@@ -56,7 +59,7 @@ public class Trader {
         System.out.println("2. Нет");
         int choice;
         try {
-            choice = Integer.parseInt(Main.sc.nextLine());
+            choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1 -> {
                     if (hero.money < 25) {
@@ -84,8 +87,8 @@ public class Trader {
         } else {
             assortment.printItems();
             System.out.println("Что выбираем?");
-            System.out.println("1. Танго");
-            System.out.println("2. Кларити");
+            System.out.println("1. Кларити");
+            System.out.println("2. Танго");
         }
 
     }
